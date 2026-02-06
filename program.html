@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program - SDIT Al-Hikmah</title>
+    <meta name="description" content="Program Pembelajaran SDIT Al-Hikmah - Kurikulum dan Ekstrakurikuler">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-gray-700 bg-gray-50">
+
+    <!-- Navigation -->
+    <header x-data="{ sticky: stickyHeader(), mobile: mobileMenu() }" :class="{ 'sticky-header': sticky.isSticky }" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-poppins font-bold text-xl text-dark">SDIT Al-Hikmah</h1>
+                        <p class="text-xs text-gray-500">Islamic School</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition">Beranda</a>
+                    <a href="profil.html" class="text-gray-700 hover:text-primary font-medium transition">Profil</a>
+                    <a href="program.html" class="nav-active text-primary font-semibold transition">Program</a>
+                    <a href="fasilitas.html" class="text-gray-700 hover:text-primary font-medium transition">Fasilitas</a>
+                    <a href="tenaga-pendidik.html" class="text-gray-700 hover:text-primary font-medium transition">Guru</a>
+                    <a href="galeri.html" class="text-gray-700 hover:text-primary font-medium transition">Galeri</a>
+                    <a href="berita.html" class="text-gray-700 hover:text-primary font-medium transition">Berita</a>
+                    <a href="kontak.html" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">Kontak</a>
+                </nav>
+
+                <button @click="mobile.toggle()" class="lg:hidden text-gray-700 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl" x-show="!mobile.isOpen"></i>
+                    <i class="fas fa-times text-2xl" x-show="mobile.isOpen"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobile.isOpen" @click.away="mobile.close()" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden bg-white border-t shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="profil.html" class="block py-2 text-gray-700 hover:text-primary">Profil</a>
+                <a href="program.html" class="block py-2 text-primary font-semibold">Program</a>
+                <a href="fasilitas.html" class="block py-2 text-gray-700 hover:text-primary">Fasilitas</a>
+                <a href="tenaga-pendidik.html" class="block py-2 text-gray-700 hover:text-primary">Guru</a>
+                <a href="galeri.html" class="block py-2 text-gray-700 hover:text-primary">Galeri</a>
+                <a href="berita.html" class="block py-2 text-gray-700 hover:text-primary">Berita</a>
+                <a href="kontak.html" class="block py-2 text-primary font-semibold">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary to-emerald-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="font-poppins text-4xl md:text-5xl font-bold mb-4">Program Pembelajaran</h1>
+            <p class="text-lg text-white/90">Kurikulum Islam Terpadu dan Kegiatan Ekstrakurikuler</p>
+        </div>
+    </section>
+
+    <!-- Kurikulum Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Kurikulum</span>
+                <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2">Program Unggulan</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Kurikulum Nasional -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-book text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-dark mb-3">Kurikulum Nasional</h3>
+                    <p class="text-gray-600 mb-4">Mengikuti kurikulum nasional dengan mata pelajaran wajib sesuai standar Kementerian Pendidikan.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li><i class="fas fa-check text-primary mr-2"></i>Matematika</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Bahasa Indonesia</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>IPA & IPS</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Pendidikan Jasmani</li>
+                    </ul>
+                </div>
+
+                <!-- Tahfidz Quran -->
+                <div class="bg-primary text-white rounded-2xl p-8 card-hover animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-book-quran text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl mb-3">Program Tahfidz Quran</h3>
+                    <p class="text-white/90 mb-4">Program hafalan Al-Quran dengan target hafalan juz 30 untuk siswa kelas 6.</p>
+                    <ul class="text-sm text-white/80 space-y-1">
+                        <li><i class="fas fa-check mr-2"></i>Metode Wafa</li>
+                        <li><i class="fas fa-check mr-2"></i>Tahsin & Tahfidz</li>
+                        <li><i class="fas fa-check mr-2"></i>Tafsir Ringan</li>
+                        <li><i class="fas fa-check mr-2"></i>Ujian Semester</li>
+                    </ul>
+                </div>
+
+                <!-- Bahasa Arab -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-language text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-dark mb-3">Bahasa Arab</h3>
+                    <p class="text-gray-600 mb-4">Pembelajaran bahasa Arab dari dasar hingga mahir dengan metode interaktif.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li><i class="fas fa-check text-primary mr-2"></i>Durrah</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Nahwu & Sharaf</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Speaking</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Conversation</li>
+                    </ul>
+                </div>
+
+                <!-- Adab Islami -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover animate-on-scroll">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-praying text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-dark mb-3">Adab Islami</h3>
+                    <p class="text-gray-600 mb-4">Pembentukan karakter Islami melalui pembiasaan adab dan akhlak mulia.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li><i class="fas fa-check text-primary mr-2"></i>Adab Guru & Orang Tua</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Adab Teman</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Adab Makan & Minum</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Kebersihan</li>
+                    </ul>
+                </div>
+
+                <!-- Fiqih & Aqidah -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mosque text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-dark mb-3">Fiqih & Aqidah</h3>
+                    <p class="text-gray-600 mb-4">Pembelajaran praktik ibadah dan keimanan sesuai pemahaman salaf.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li><i class="fas fa-check text-primary mr-2"></i>Praktik Wudhu</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Shalat & Dzikir</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Thaharah</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Aqidah Islam</li>
+                    </ul>
+                </div>
+
+                <!-- Keterampilan -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-red-600 text-3xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-xl text-dark mb-3">Keterampilan</h3>
+                    <p class="text-gray-600 mb-4">Program pengembangan soft skills dan life skills untuk siswa.</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li><i class="fas fa-check text-primary mr-2"></i>Kepemimpinan</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Public Speaking</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Kerja Sama</li>
+                        <li><i class="fas fa-check text-primary mr-2"></i>Problem Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ekstrakurikuler Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Ekstrakurikuler</span>
+                <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2">Kegiatan Luar Kelas</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pramuka -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll">
+                    <img src="assets/images/galeri/galeri-01.jpg" alt="Pramuka" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-campground text-green-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Pramuka</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Kegiatan kepramukaan untuk membentuk karakter disiplin dan mandiri.</p>
+                    </div>
+                </div>
+
+                <!-- Pencak Silat -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.1s">
+                    <img src="assets/images/galeri/galeri-02.jpg" alt="Pencak Silat" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-hand-fist text-red-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Pencak Silat</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Belajar bela diri tradisional untuk kesehatan dan kepercayaan diri.</p>
+                    </div>
+                </div>
+
+                <!-- Seni -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.2s">
+                    <img src="assets/images/galeri/galeri-03.jpg" alt="Seni" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-palette text-purple-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Seni & Musik</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Mengembangkan bakat seni melalui tari, musik, dan seni rupa.</p>
+                    </div>
+                </div>
+
+                <!-- Olahraga -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.3s">
+                    <img src="assets/images/galeri/galeri-04.jpg" alt="Olahraga" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-basketball text-blue-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Olahraga</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Berbagai cabang olahraga: futsal, badminton, atletik, dan renang.</p>
+                    </div>
+                </div>
+
+                <!-- Komputer -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll">
+                    <img src="assets/images/fasilitas/lab-komputer.jpg" alt="Komputer" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-laptop-code text-indigo-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Komputer</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Pembelajaran dasar komputer, coding, dan desain grafis.</p>
+                    </div>
+                </div>
+
+                <!-- Science Club -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.1s">
+                    <img src="assets/images/galeri/galeri-05.jpg" alt="Science" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-flask text-yellow-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Science Club</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Eksplorasi sains melalui eksperimen dan proyek kreatif.</p>
+                    </div>
+                </div>
+
+                <!-- English Club -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.2s">
+                    <img src="assets/images/galeri/galeri-06.jpg" alt="English" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-language text-pink-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">English Club</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Meningkatkan kemampuan berbahasa Inggris secara praktis.</p>
+                    </div>
+                </div>
+
+                <!-- Marawis -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover animate-on-scroll" style="animation-delay: 0.3s">
+                    <img src="assets/images/galeri/galeri-07.jpg" alt="Marawis" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-drum text-emerald-600"></i>
+                            </div>
+                            <h3 class="font-poppins font-bold text-lg text-dark">Hadrah/Marawis</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Grup sholawat dan hadrah untuk mengembangkan bakat religi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jadwal Pelajaran Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Jadwal</span>
+                <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2">Jam Pembelajaran</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-2xl p-8 animate-on-scroll">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-sun text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-lg text-dark mb-2">Pagi</h3>
+                        <p class="text-gray-600">07:00 - 11:30</p>
+                        <p class="text-sm text-gray-500 mt-2">Kelas 1 - 3</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-clock text-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-lg text-dark mb-2">Siang</h3>
+                        <p class="text-gray-600">12:30 - 15:00</p>
+                        <p class="text-sm text-gray-500 mt-2">Kelas 4 - 6</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                        <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-moon text-emerald-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-lg text-dark mb-2">Ekstrakurikuler</h3>
+                        <p class="text-gray-600">15:00 - 17:00</p>
+                        <p class="text-sm text-gray-500 mt-2">Semua Kelas</p>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-primary/5 rounded-xl text-center">
+                    <p class="text-gray-600"><i class="fas fa-info-circle text-primary mr-2"></i>Setiap hari Jumat pembelajaran dilaksanakan hingga pukul 11:00 untuk shalat Jumat berjamaah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-school text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-poppins font-bold text-lg">SDIT Al-Hikmah</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Membangun generasi Qurani yang berakhlak mulia, berilmu luas, dan siap menghadapi tantangan masa depan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="profil.html" class="footer-link text-gray-400 hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="program.html" class="footer-link text-gray-400 hover:text-white transition">Program</a></li>
+                        <li><a href="fasilitas.html" class="footer-link text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="tenaga-pendidik.html" class="footer-link text-gray-400 hover:text-white transition">Tenaga Pendidik</a></li>
+                        <li><a href="galeri.html" class="footer-link text-gray-400 hover:text-white transition">Galeri</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-400 text-sm">(021) 1234-5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-primary"></i>
+                            <span class="text-gray-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-400 text-sm">info@sdit-alhikmah.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Senin - Jumat</span>
+                            <span>07:00 - 15:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sabtu</span>
+                            <span>07:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minggu</span>
+                            <span>Libur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400 text-sm text-center">
+                    &copy; 2026 SDIT Al-Hikmah. Design by <a href="https://www.bitnesia.com" target="_blank" class="text-secondary hover:text-white transition">Bitnesia</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button x-data="scrollTop()" x-show="isVisible" @click="scroll()" x-transition class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-emerald-700 transition z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

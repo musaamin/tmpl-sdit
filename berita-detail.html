@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Berita - SDIT Al-Hikmah</title>
+    <meta name="description" content="Detail Berita SDIT Al-Hikmah">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-gray-700 bg-gray-50">
+
+    <!-- Navigation -->
+    <header x-data="{ sticky: stickyHeader(), mobile: mobileMenu() }" :class="{ 'sticky-header': sticky.isSticky }" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-poppins font-bold text-xl text-dark">SDIT Al-Hikmah</h1>
+                        <p class="text-xs text-gray-500">Islamic School</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition">Beranda</a>
+                    <a href="profil.html" class="text-gray-700 hover:text-primary font-medium transition">Profil</a>
+                    <a href="program.html" class="text-gray-700 hover:text-primary font-medium transition">Program</a>
+                    <a href="fasilitas.html" class="text-gray-700 hover:text-primary font-medium transition">Fasilitas</a>
+                    <a href="tenaga-pendidik.html" class="text-gray-700 hover:text-primary font-medium transition">Guru</a>
+                    <a href="galeri.html" class="text-gray-700 hover:text-primary font-medium transition">Galeri</a>
+                    <a href="berita.html" class="nav-active text-primary font-semibold transition">Berita</a>
+                    <a href="kontak.html" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">Kontak</a>
+                </nav>
+
+                <button @click="mobile.toggle()" class="lg:hidden text-gray-700 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl" x-show="!mobile.isOpen"></i>
+                    <i class="fas fa-times text-2xl" x-show="mobile.isOpen"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobile.isOpen" @click.away="mobile.close()" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden bg-white border-t shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="profil.html" class="block py-2 text-gray-700 hover:text-primary">Profil</a>
+                <a href="program.html" class="block py-2 text-gray-700 hover:text-primary">Program</a>
+                <a href="fasilitas.html" class="block py-2 text-gray-700 hover:text-primary">Fasilitas</a>
+                <a href="tenaga-pendidik.html" class="block py-2 text-gray-700 hover:text-primary">Guru</a>
+                <a href="galeri.html" class="block py-2 text-gray-700 hover:text-primary">Galeri</a>
+                <a href="berita.html" class="block py-2 text-primary font-semibold">Berita</a>
+                <a href="kontak.html" class="block py-2 text-primary font-semibold">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary to-emerald-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <nav class="text-white/80 text-sm mb-6">
+                <ol class="flex items-center space-x-2">
+                    <li><a href="index.html" class="hover:text-white transition">Beranda</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="berita.html" class="hover:text-white transition">Berita</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li class="text-white">Detail</li>
+                </ol>
+            </nav>
+            
+            <h1 class="font-poppins text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight max-w-4xl">
+                Lomba Tahfidz Quran Antar Kelas 2026
+            </h1>
+            
+            <div class="flex flex-wrap items-center gap-6 text-white/90">
+                <div class="flex items-center">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    <span>15 Januari 2026</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="far fa-user mr-2"></i>
+                    <span>Admin SDIT</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="far fa-eye mr-2"></i>
+                    <span>1,234 kali dibaca</span>
+                </div>
+                <span class="bg-secondary text-white text-sm px-3 py-1 rounded-full">Kegiatan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <article class="lg:col-span-2">
+                    <!-- Featured Image -->
+                    <div class="rounded-2xl overflow-hidden shadow-xl mb-8">
+                        <img src="assets/images/berita/berita-01.jpg" alt="Lomba Tahfidz" class="w-full h-96 object-cover">
+                    </div>
+                    
+                    <!-- Article Body -->
+                    <div class="prose prose-lg max-w-none">
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Alhamdulillah, pada hari Rabu tanggal 15 Januari 2026, SDIT Al-Hikmah telah sukses menyelenggarakan Lomba Tahfidz Quran Antar Kelas yang diikuti oleh seluruh siswa dari kelas 1 hingga kelas 6. Kegiatan ini bertujuan untuk meningkatkan semangat siswa dalam menghafal Al-Quran serta mempererat tali silaturahim antar siswa.
+                        </p>
+                        
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Lomba yang berlangsung di Aula Utama SDIT Al-Hikmah ini diikuti dengan antusias yang sangat tinggi oleh para peserta. Setiap kelas mengirimkan perwakilan terbaiknya untuk berlomba dalam berbagai kategori, mulai dari hafalan juz 30, juz 29, dan juz 28. Kategori penilaian meliputi kelancaran bacaan, tajwid, dan makharijul huruf.
+                        </p>
+                        
+                        <blockquote class="border-l-4 border-primary pl-6 py-4 my-8 bg-gray-50 italic text-gray-700 text-xl">
+                            "Kegiatan ini sangat penting untuk menumbuhkan cinta Al-Quran sejak dini pada diri siswa. Kami bangga melihat antusiasme mereka dalam menghafal kitab suci ini."
+                            <footer class="text-sm text-gray-500 mt-2 not-italic">— Ustadz Ahmad Fauzi, Kepala Sekolah</footer>
+                        </blockquote>
+                        
+                        <h3 class="font-poppins font-bold text-2xl text-dark mt-8 mb-4">Pemenang Lomba</h3>
+                        
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Setelah melalui penjurian yang ketat oleh dewan hakim yang terdiri dari para ustadz dan ustadzah berpengalaman, berikut adalah daftar pemenang Lomba Tahfidz Quran Antar Kelas 2026:
+                        </p>
+                        
+                        <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                            <h4 class="font-semibold text-dark mb-4">Kategori Juz 30:</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-trophy text-yellow-500 mt-1 mr-3"></i>
+                                    <span><strong>Juara 1:</strong> Ahmad Fadhil (Kelas 6A)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-medal text-gray-400 mt-1 mr-3"></i>
+                                    <span><strong>Juara 2:</strong> Fatimah Azzahra (Kelas 5B)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-medal text-orange-400 mt-1 mr-3"></i>
+                                    <span><strong>Juara 3:</strong> Muhammad Rizky (Kelas 4A)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Seluruh pemenang akan mewakili SDIT Al-Hikmah dalam lomba tahfidz tingkat kecamatan yang akan diselenggarakan pada bulan Februari mendatang. Kami doakan semoga mereka dapat membawa nama baik sekolah dan meraih prestasi yang gemilang.
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 my-8">
+                            <img src="assets/images/galeri/galeri-01.jpg" alt="Kegiatan" class="rounded-xl w-full h-64 object-cover">
+                            <img src="assets/images/galeri/galeri-02.jpg" alt="Kegiatan" class="rounded-xl w-full h-64 object-cover">
+                        </div>
+                        
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Kegiatan ini juga dihadiri oleh para orang tua siswa yang memberikan dukungan penuh kepada putra-putri mereka. Kehadiran mereka menjadi motivasi tersendiri bagi para peserta lomba. Semoga kegiatan ini dapat terus dilaksanakan secara rutin dan menjadi tradisi tahunan SDIT Al-Hikmah.
+                        </p>
+                        
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Kami ucapkan terima kasih kepada seluruh pihak yang telah mendukung terselenggaranya kegiatan ini, khususnya kepada dewan guru, panitia pelaksana, para hakim, dan tentunya para siswa yang telah berpartisipasi dengan penuh semangat. Semoga amal ibadah kita semua diterima oleh Allah SWT.
+                        </p>
+                    </div>
+                    
+                    <!-- Share Buttons -->
+                    <div class="border-t border-gray-200 mt-12 pt-8">
+                        <h4 class="font-semibold text-dark mb-4">Bagikan Artikel:</h4>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center hover:bg-sky-600 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <button onclick="navigator.clipboard.writeText(window.location.href)" class="w-10 h-10 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center hover:bg-gray-300 transition" title="Copy Link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Sidebar -->
+                <aside class="lg:col-span-1">
+                    <!-- Search -->
+                    <div class="bg-gray-50 rounded-2xl p-6 mb-8">
+                        <h4 class="font-poppins font-semibold text-dark mb-4">Cari Berita</h4>
+                        <div class="relative">
+                            <input type="text" placeholder="Kata kunci..." class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary transition">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="bg-gray-50 rounded-2xl p-6 mb-8">
+                        <h4 class="font-poppins font-semibold text-dark mb-4">Kategori</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary transition">
+                                    <span>Kegiatan</span>
+                                    <span class="bg-gray-200 text-xs px-2 py-1 rounded-full">12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary transition">
+                                    <span>Prestasi</span>
+                                    <span class="bg-gray-200 text-xs px-2 py-1 rounded-full">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary transition">
+                                    <span>Acara</span>
+                                    <span class="bg-gray-200 text-xs px-2 py-1 rounded-full">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex justify-between items-center text-gray-600 hover:text-primary transition">
+                                    <span>Pengumuman</span>
+                                    <span class="bg-gray-200 text-xs px-2 py-1 rounded-full">4</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent Posts -->
+                    <div class="bg-gray-50 rounded-2xl p-6">
+                        <h4 class="font-poppins font-semibold text-dark mb-4">Berita Terbaru</h4>
+                        <div class="space-y-4">
+                            <a href="berita-detail.html?id=2" class="flex space-x-3 group">
+                                <img src="assets/images/berita/berita-02.jpg" alt="Thumbnail" class="w-20 h-20 rounded-lg object-cover">
+                                <div>
+                                    <h5 class="font-medium text-dark group-hover:text-primary transition line-clamp-2">Siswa SDIT Al-Hikmah Raih Juara Olimpiade Matematika</h5>
+                                    <span class="text-sm text-gray-500">10 Jan 2026</span>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html?id=3" class="flex space-x-3 group">
+                                <img src="assets/images/berita/berita-03.jpg" alt="Thumbnail" class="w-20 h-20 rounded-lg object-cover">
+                                <div>
+                                    <h5 class="font-medium text-dark group-hover:text-primary transition line-clamp-2">Perpisahan Kelas 6 Tahun Ajaran 2025/2026</h5>
+                                    <span class="text-sm text-gray-500">5 Jan 2026</span>
+                                </div>
+                            </a>
+                            <a href="berita-detail.html?id=4" class="flex space-x-3 group">
+                                <img src="assets/images/galeri/galeri-01.jpg" alt="Thumbnail" class="w-20 h-20 rounded-lg object-cover">
+                                <div>
+                                    <h5 class="font-medium text-dark group-hover:text-primary transition line-clamp-2">Pembukaan Tahun Ajaran Baru 2025/2026</h5>
+                                    <span class="text-sm text-gray-500">28 Des 2025</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related News -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-poppins text-2xl font-bold text-dark mb-8 text-center">Berita Terkait</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <img src="assets/images/berita/berita-02.jpg" alt="Related" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">10 Jan 2026</span>
+                        <h3 class="font-poppins font-bold text-lg text-dark mt-2 mb-3 line-clamp-2">Siswa SDIT Al-Hikmah Raih Juara Olimpiade Matematika</h3>
+                        <a href="berita-detail.html?id=2" class="text-primary font-semibold hover:text-emerald-700 transition text-sm">Baca Selengkapnya</a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <img src="assets/images/berita/berita-03.jpg" alt="Related" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">5 Jan 2026</span>
+                        <h3 class="font-poppins font-bold text-lg text-dark mt-2 mb-3 line-clamp-2">Perpisahan Kelas 6 Tahun Ajaran 2025/2026</h3>
+                        <a href="berita-detail.html?id=3" class="text-primary font-semibold hover:text-emerald-700 transition text-sm">Baca Selengkapnya</a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <img src="assets/images/galeri/galeri-03.jpg" alt="Related" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-gray-500">28 Des 2025</span>
+                        <h3 class="font-poppins font-bold text-lg text-dark mt-2 mb-3 line-clamp-2">Workshop Pengembangan Karakter Siswa</h3>
+                        <a href="berita-detail.html?id=6" class="text-primary font-semibold hover:text-emerald-700 transition text-sm">Baca Selengkapnya</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-school text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-poppins font-bold text-lg">SDIT Al-Hikmah</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Membangun generasi Qurani yang berakhlak mulia, berilmu luas, dan siap menghadapi tantangan masa depan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="profil.html" class="footer-link text-gray-400 hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="program.html" class="footer-link text-gray-400 hover:text-white transition">Program</a></li>
+                        <li><a href="fasilitas.html" class="footer-link text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="tenaga-pendidik.html" class="footer-link text-gray-400 hover:text-white transition">Tenaga Pendidik</a></li>
+                        <li><a href="galeri.html" class="footer-link text-gray-400 hover:text-white transition">Galeri</a></li>
+                        <li><a href="berita.html" class="footer-link text-gray-400 hover:text-white transition">Berita</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-400 text-sm">(021) 1234-5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-primary"></i>
+                            <span class="text-gray-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-400 text-sm">info@sdit-alhikmah.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Senin - Jumat</span>
+                            <span>07:00 - 15:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sabtu</span>
+                            <span>07:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minggu</span>
+                            <span>Libur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400 text-sm text-center">
+                    &copy; 2026 SDIT Al-Hikmah. Design by <a href="https://www.bitnesia.com" target="_blank" class="text-secondary hover:text-white transition">Bitnesia</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button x-data="scrollTop()" x-show="isVisible" @click="scroll()" x-transition class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-emerald-700 transition z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

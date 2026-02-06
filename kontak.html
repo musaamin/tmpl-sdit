@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - SDIT Al-Hikmah</title>
+    <meta name="description" content="Kontak SDIT Al-Hikmah - Hubungi Kami">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-gray-700 bg-gray-50">
+
+    <!-- Navigation -->
+    <header x-data="{ sticky: stickyHeader(), mobile: mobileMenu() }" :class="{ 'sticky-header': sticky.isSticky }" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-poppins font-bold text-xl text-dark">SDIT Al-Hikmah</h1>
+                        <p class="text-xs text-gray-500">Islamic School</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition">Beranda</a>
+                    <a href="profil.html" class="text-gray-700 hover:text-primary font-medium transition">Profil</a>
+                    <a href="program.html" class="text-gray-700 hover:text-primary font-medium transition">Program</a>
+                    <a href="fasilitas.html" class="text-gray-700 hover:text-primary font-medium transition">Fasilitas</a>
+                    <a href="tenaga-pendidik.html" class="text-gray-700 hover:text-primary font-medium transition">Guru</a>
+                    <a href="galeri.html" class="text-gray-700 hover:text-primary font-medium transition">Galeri</a>
+                    <a href="berita.html" class="text-gray-700 hover:text-primary font-medium transition">Berita</a>
+                    <a href="kontak.html" class="nav-active bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">Kontak</a>
+                </nav>
+
+                <button @click="mobile.toggle()" class="lg:hidden text-gray-700 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl" x-show="!mobile.isOpen"></i>
+                    <i class="fas fa-times text-2xl" x-show="mobile.isOpen"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobile.isOpen" @click.away="mobile.close()" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden bg-white border-t shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="profil.html" class="block py-2 text-gray-700 hover:text-primary">Profil</a>
+                <a href="program.html" class="block py-2 text-gray-700 hover:text-primary">Program</a>
+                <a href="fasilitas.html" class="block py-2 text-gray-700 hover:text-primary">Fasilitas</a>
+                <a href="tenaga-pendidik.html" class="block py-2 text-gray-700 hover:text-primary">Guru</a>
+                <a href="galeri.html" class="block py-2 text-gray-700 hover:text-primary">Galeri</a>
+                <a href="berita.html" class="block py-2 text-gray-700 hover:text-primary">Berita</a>
+                <a href="kontak.html" class="block py-2 text-primary font-semibold">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary to-emerald-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="font-poppins text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h1>
+            <p class="text-lg text-white/90">Kami Siap Membantu Anda</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 -mt-32 relative z-10">
+                <!-- Alamat -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-lg text-dark mb-2">Alamat</h3>
+                    <p class="text-gray-600 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami 12345</p>
+                </div>
+
+                <!-- Telepon -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl text-center animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-lg text-dark mb-2">Telepon</h3>
+                    <p class="text-gray-600 text-sm">(021) 1234-5678</p>
+                    <p class="text-gray-600 text-sm">(021) 8765-4321</p>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl text-center animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-whatsapp text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-lg text-dark mb-2">WhatsApp</h3>
+                    <p class="text-gray-600 text-sm">+62 812-3456-7890</p>
+                    <p class="text-green-600 text-sm font-medium">Fast Response</p>
+                </div>
+
+                <!-- Email -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl text-center animate-on-scroll" style="animation-delay: 0.3s">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-poppins font-bold text-lg text-dark mb-2">Email</h3>
+                    <p class="text-gray-600 text-sm">info@sdit-alhikmah.sch.id</p>
+                    <p class="text-gray-600 text-sm">ppdb@sdit-alhikmah.sch.id</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="animate-on-scroll">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Kirim Pesan</span>
+                    <h2 class="font-poppins text-3xl font-bold text-dark mt-2 mb-6">Hubungi Kami via WhatsApp</h2>
+                    <p class="text-gray-600 mb-8">Isi form di bawah ini dan pesan Anda akan langsung terkirim ke WhatsApp admin kami.</p>
+
+                    <form x-data="whatsappForm()" @submit.prevent="submit()" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                            <input type="text" x-model="nama" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Masukkan nama lengkap Anda">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" x-model="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Masukkan email Anda">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subjek</label>
+                            <select x-model="subjek" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                                <option value="">Pilih Subjek</option>
+                                <option value="Informasi PPDB">Informasi PPDB</option>
+                                <option value="Informasi Umum">Informasi Umum</option>
+                                <option value="Kerjasama">Kerjasama</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pesan</label>
+                            <textarea x-model="pesan" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-green-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-green-600 transition flex items-center justify-center btn-shine">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i>Kirim via WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Map -->
+                <div class="animate-on-scroll" style="animation-delay: 0.1s">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Lokasi</span>
+                    <h2 class="font-poppins text-3xl font-bold text-dark mt-2 mb-6">Temukan Kami</h2>
+                    <div class="bg-white rounded-2xl shadow-xl p-2">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1581234567890!5m2!1sid!2sid"
+                            width="100%" 
+                            height="450" 
+                            style="border:0; border-radius: 1rem;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            class="w-full">
+                        </iframe>
+                    </div>
+                    <div class="mt-6 flex items-center space-x-4">
+                        <a href="#" class="flex-1 bg-primary text-white py-3 rounded-xl font-medium text-center hover:bg-emerald-700 transition">
+                            <i class="fas fa-directions mr-2"></i>Petunjuk Arah
+                        </a>
+                        <a href="#" class="flex-1 bg-gray-200 text-dark py-3 rounded-xl font-medium text-center hover:bg-gray-300 transition">
+                            <i class="fas fa-share-alt mr-2"></i>Bagikan Lokasi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jam Operasional -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Jadwal</span>
+                    <h2 class="font-poppins text-3xl font-bold text-dark mt-2">Jam Operasional</h2>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-calendar-day text-primary text-xl"></i>
+                            </div>
+                            <h3 class="font-poppins font-semibold text-lg text-dark mb-2">Senin - Jumat</h3>
+                            <p class="text-gray-600">07:00 - 15:00 WIB</p>
+                            <p class="text-sm text-gray-500 mt-1">Jam belajar siswa</p>
+                        </div>
+
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-calendar-week text-secondary text-xl"></i>
+                            </div>
+                            <h3 class="font-poppins font-semibold text-lg text-dark mb-2">Sabtu</h3>
+                            <p class="text-gray-600">07:00 - 12:00 WIB</p>
+                            <p class="text-sm text-gray-500 mt-1">Kegiatan ekstrakurikuler</p>
+                        </div>
+
+                        <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-calendar-times text-red-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-poppins font-semibold text-lg text-dark mb-2">Minggu</h3>
+                            <p class="text-gray-600">Libur</p>
+                            <p class="text-sm text-gray-500 mt-1">Tidak ada kegiatan</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-primary/5 rounded-xl">
+                        <p class="text-center text-gray-600">
+                            <i class="fas fa-info-circle text-primary mr-2"></i>
+                            Untuk kunjungan di luar jam operasional, silahkan hubungi kami terlebih dahulu untuk membuat janji.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">FAQ</span>
+                    <h2 class="font-poppins text-3xl font-bold text-dark mt-2">Pertanyaan yang Sering Diajukan</h2>
+                </div>
+
+                <div class="space-y-4 animate-on-scroll" x-data="{ open: null }">
+                    <!-- FAQ 1 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <button @click="open === 1 ? open = null : open = 1" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                            <span class="font-semibold text-dark">Bagaimana cara mendaftar di SDIT Al-Hikmah?</span>
+                            <i class="fas fa-chevron-down transition-transform" :class="{ 'rotate-180': open === 1 }"></i>
+                        </button>
+                        <div x-show="open === 1" x-collapse class="px-6 pb-4">
+                            <p class="text-gray-600">Pendaftaran dapat dilakukan secara online melalui website atau langsung datang ke kantor sekolah. Dokumen yang diperlukan: KK, Akta Kelahiran, dan pas foto 3x4 (3 lembar).</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <button @click="open === 2 ? open = null : open = 2" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                            <span class="font-semibold text-dark">Berapa biaya masuk dan SPP per bulan?</span>
+                            <i class="fas fa-chevron-down transition-transform" :class="{ 'rotate-180': open === 2 }"></i>
+                        </button>
+                        <div x-show="open === 2" x-collapse class="px-6 pb-4">
+                            <p class="text-gray-600">Biaya pendidikan bervariasi sesuai kelas. Silahkan hubungi bagian administrasi kami untuk informasi detail mengenai biaya pendaftaran, SPP, dan kegiatan.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <button @click="open === 3 ? open = null : open = 3" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                            <span class="font-semibold text-dark">Apakah ada program beasiswa?</span>
+                            <i class="fas fa-chevron-down transition-transform" :class="{ 'rotate-180': open === 3 }"></i>
+                        </button>
+                        <div x-show="open === 3" x-collapse class="px-6 pb-4">
+                            <p class="text-gray-600">Ya, kami menyediakan program beasiswa untuk siswa berprestasi dan siswa kurang mampu. Informasi lebih lanjut dapat ditanyakan ke bagian kesiswaan.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <button @click="open === 4 ? open = null : open = 4" class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                            <span class="font-semibold text-dark">Apakah tersedia antar jemput siswa?</span>
+                            <i class="fas fa-chevron-down transition-transform" :class="{ 'rotate-180': open === 4 }"></i>
+                        </button>
+                        <div x-show="open === 4" x-collapse class="px-6 pb-4">
+                            <p class="text-gray-600">Ya, kami menyediakan layanan antar jemput dengan beberapa rute. Silahkan hubungi bagian kesiswaan untuk informasi rute dan biaya.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-school text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-poppins font-bold text-lg">SDIT Al-Hikmah</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Membangun generasi Qurani yang berakhlak mulia, berilmu luas, dan siap menghadapi tantangan masa depan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="profil.html" class="footer-link text-gray-400 hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="program.html" class="footer-link text-gray-400 hover:text-white transition">Program</a></li>
+                        <li><a href="fasilitas.html" class="footer-link text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="tenaga-pendidik.html" class="footer-link text-gray-400 hover:text-white transition">Tenaga Pendidik</a></li>
+                        <li><a href="galeri.html" class="footer-link text-gray-400 hover:text-white transition">Galeri</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-400 text-sm">(021) 1234-5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-primary"></i>
+                            <span class="text-gray-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-400 text-sm">info@sdit-alhikmah.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Senin - Jumat</span>
+                            <span>07:00 - 15:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sabtu</span>
+                            <span>07:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minggu</span>
+                            <span>Libur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm text-center md:text-left">
+                        &copy; 2026 SDIT Al-Hikmah. Design by <a href="https://www.bitnesia.com" target="_blank" class="text-secondary hover:text-white transition">Bitnesia</a>
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition">Syarat & Ketentuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button x-data="scrollTop()" x-show="isVisible" @click="scroll()" x-transition class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-emerald-700 transition z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-8 left-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition z-40 whatsapp-pulse">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

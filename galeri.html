@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - SDIT Al-Hikmah</title>
+    <meta name="description" content="Galeri Kegiatan SDIT Al-Hikmah">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-gray-700 bg-gray-50">
+
+    <!-- Navigation -->
+    <header x-data="{ sticky: stickyHeader(), mobile: mobileMenu() }" :class="{ 'sticky-header': sticky.isSticky }" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-poppins font-bold text-xl text-dark">SDIT Al-Hikmah</h1>
+                        <p class="text-xs text-gray-500">Islamic School</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition">Beranda</a>
+                    <a href="profil.html" class="text-gray-700 hover:text-primary font-medium transition">Profil</a>
+                    <a href="program.html" class="text-gray-700 hover:text-primary font-medium transition">Program</a>
+                    <a href="fasilitas.html" class="text-gray-700 hover:text-primary font-medium transition">Fasilitas</a>
+                    <a href="tenaga-pendidik.html" class="text-gray-700 hover:text-primary font-medium transition">Guru</a>
+                    <a href="galeri.html" class="nav-active text-primary font-semibold transition">Galeri</a>
+                    <a href="berita.html" class="text-gray-700 hover:text-primary font-medium transition">Berita</a>
+                    <a href="kontak.html" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">Kontak</a>
+                </nav>
+
+                <button @click="mobile.toggle()" class="lg:hidden text-gray-700 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl" x-show="!mobile.isOpen"></i>
+                    <i class="fas fa-times text-2xl" x-show="mobile.isOpen"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobile.isOpen" @click.away="mobile.close()" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden bg-white border-t shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="profil.html" class="block py-2 text-gray-700 hover:text-primary">Profil</a>
+                <a href="program.html" class="block py-2 text-gray-700 hover:text-primary">Program</a>
+                <a href="fasilitas.html" class="block py-2 text-gray-700 hover:text-primary">Fasilitas</a>
+                <a href="tenaga-pendidik.html" class="block py-2 text-gray-700 hover:text-primary">Guru</a>
+                <a href="galeri.html" class="block py-2 text-primary font-semibold">Galeri</a>
+                <a href="berita.html" class="block py-2 text-gray-700 hover:text-primary">Berita</a>
+                <a href="kontak.html" class="block py-2 text-primary font-semibold">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary to-emerald-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="font-poppins text-4xl md:text-5xl font-bold mb-4">Galeri</h1>
+            <p class="text-lg text-white/90">Dokumentasi Kegiatan SDIT Al-Hikmah</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-white" x-data="galleryFilter()">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button @click="filter('all')" :class="{ 'bg-primary text-white': activeFilter === 'all', 'bg-gray-100 text-gray-700 hover:bg-primary hover:text-white': activeFilter !== 'all' }" class="px-6 py-2 rounded-full font-medium transition">
+                    Semua
+                </button>
+                <button @click="filter('belajar')" :class="{ 'bg-primary text-white': activeFilter === 'belajar', 'bg-gray-100 text-gray-700 hover:bg-primary hover:text-white': activeFilter !== 'belajar' }" class="px-6 py-2 rounded-full font-medium transition">
+                    Kegiatan Belajar
+                </button>
+                <button @click="filter('ekstrakurikuler')" :class="{ 'bg-primary text-white': activeFilter === 'ekstrakurikuler', 'bg-gray-100 text-gray-700 hover:bg-primary hover:text-white': activeFilter !== 'ekstrakurikuler' }" class="px-6 py-2 rounded-full font-medium transition">
+                    Ekstrakurikuler
+                </button>
+                <button @click="filter('prestasi')" :class="{ 'bg-primary text-white': activeFilter === 'prestasi', 'bg-gray-100 text-gray-700 hover:bg-primary hover:text-white': activeFilter !== 'prestasi' }" class="px-6 py-2 rounded-full font-medium transition">
+                    Prestasi
+                </button>
+                <button @click="filter('perayaan')" :class="{ 'bg-primary text-white': activeFilter === 'perayaan', 'bg-gray-100 text-gray-700 hover:bg-primary hover:text-white': activeFilter !== 'perayaan' }" class="px-6 py-2 rounded-full font-medium transition">
+                    Perayaan
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div x-show="isVisible('belajar')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 0 })">
+                    <img src="assets/images/galeri/galeri-01.jpg" alt="Kegiatan Belajar" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-primary text-white text-xs px-3 py-1 rounded-full mb-2">Kegiatan Belajar</span>
+                            <h3 class="text-white font-semibold text-lg">Belajar di Kelas</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div x-show="isVisible('ekstrakurikuler')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.1s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 1 })">
+                    <img src="assets/images/galeri/galeri-02.jpg" alt="Ekstrakurikuler" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-2">Ekstrakurikuler</span>
+                            <h3 class="text-white font-semibold text-lg">Latihan Pramuka</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div x-show="isVisible('perayaan')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.2s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 2 })">
+                    <img src="assets/images/galeri/galeri-03.jpg" alt="Perayaan" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-purple-600 text-white text-xs px-3 py-1 rounded-full mb-2">Perayaan</span>
+                            <h3 class="text-white font-semibold text-lg">Hari Kartini</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div x-show="isVisible('prestasi')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 3 })">
+                    <img src="assets/images/galeri/galeri-04.jpg" alt="Prestasi" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-emerald-600 text-white text-xs px-3 py-1 rounded-full mb-2">Prestasi</span>
+                            <h3 class="text-white font-semibold text-lg">Juara Olimpiade</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div x-show="isVisible('belajar')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.1s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 4 })">
+                    <img src="assets/images/galeri/galeri-05.jpg" alt="Kegiatan Belajar" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-primary text-white text-xs px-3 py-1 rounded-full mb-2">Kegiatan Belajar</span>
+                            <h3 class="text-white font-semibold text-lg">Praktikum Sains</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div x-show="isVisible('ekstrakurikuler')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.2s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 5 })">
+                    <img src="assets/images/galeri/galeri-06.jpg" alt="Ekstrakurikuler" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-2">Ekstrakurikuler</span>
+                            <h3 class="text-white font-semibold text-lg">Seni Tari</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div x-show="isVisible('perayaan')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 6 })">
+                    <img src="assets/images/galeri/galeri-07.jpg" alt="Perayaan" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-purple-600 text-white text-xs px-3 py-1 rounded-full mb-2">Perayaan</span>
+                            <h3 class="text-white font-semibold text-lg">Maulid Nabi</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div x-show="isVisible('prestasi')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.1s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 7 })">
+                    <img src="assets/images/galeri/galeri-08.jpg" alt="Prestasi" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-emerald-600 text-white text-xs px-3 py-1 rounded-full mb-2">Prestasi</span>
+                            <h3 class="text-white font-semibold text-lg">Lomba Tahfidz</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div x-show="isVisible('belajar')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.2s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 8 })">
+                    <img src="assets/images/galeri/galeri-09.jpg" alt="Kegiatan Belajar" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-primary text-white text-xs px-3 py-1 rounded-full mb-2">Kegiatan Belajar</span>
+                            <h3 class="text-white font-semibold text-lg">Kunjungan Museum</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 10 -->
+                <div x-show="isVisible('ekstrakurikuler')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 9 })">
+                    <img src="assets/images/galeri/galeri-10.jpg" alt="Ekstrakurikuler" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-2">Ekstrakurikuler</span>
+                            <h3 class="text-white font-semibold text-lg">Pencak Silat</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 11 -->
+                <div x-show="isVisible('perayaan')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.1s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 10 })">
+                    <img src="assets/images/galeri/galeri-11.jpg" alt="Perayaan" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-purple-600 text-white text-xs px-3 py-1 rounded-full mb-2">Perayaan</span>
+                            <h3 class="text-white font-semibold text-lg">Isra Mi'raj</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 12 -->
+                <div x-show="isVisible('prestasi')" class="group relative overflow-hidden rounded-2xl cursor-pointer animate-on-scroll" style="animation-delay: 0.2s" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" @click="$dispatch('open-lightbox', { index: 11 })">
+                    <img src="assets/images/galeri/galeri-12.jpg" alt="Prestasi" class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="inline-block bg-emerald-600 text-white text-xs px-3 py-1 rounded-full mb-2">Prestasi</span>
+                            <h3 class="text-white font-semibold text-lg">Pengukuhan Juara</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">
+                    <i class="fas fa-spinner mr-2"></i>Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div x-data="{ 
+        isOpen: false, 
+        currentIndex: 0,
+        images: [
+            'assets/images/galeri/galeri-01.jpg',
+            'assets/images/galeri/galeri-02.jpg',
+            'assets/images/galeri/galeri-03.jpg',
+            'assets/images/galeri/galeri-04.jpg',
+            'assets/images/galeri/galeri-05.jpg',
+            'assets/images/galeri/galeri-06.jpg',
+            'assets/images/galeri/galeri-07.jpg',
+            'assets/images/galeri/galeri-08.jpg',
+            'assets/images/galeri/galeri-09.jpg',
+            'assets/images/galeri/galeri-10.jpg',
+            'assets/images/galeri/galeri-11.jpg',
+            'assets/images/galeri/galeri-12.jpg'
+        ],
+        get currentImage() {
+            return this.images[this.currentIndex];
+        },
+        open(index) {
+            this.currentIndex = index;
+            this.isOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+        close() {
+            this.isOpen = false;
+            document.body.style.overflow = '';
+        },
+        next() {
+            this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        },
+        prev() {
+            this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        }
+    }" x-show="isOpen" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4" @open-lightbox.window="open($event.detail.index)" @keydown.escape.window="close()" @keydown.arrow-right.window="next()" @keydown.arrow-left.window="prev()">
+        <div class="absolute inset-0 bg-black/90" @click="close()"></div>
+        <div class="relative z-10 max-w-5xl w-full">
+            <!-- Close button -->
+            <button @click="close()" class="absolute -top-12 right-0 text-white hover:text-gray-300 transition z-20">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            
+            <!-- Main image -->
+            <div class="relative">
+                <img :src="currentImage" alt="Gallery" class="w-full h-auto max-h-[80vh] object-contain rounded-lg" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+                
+                <!-- Image counter -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+                    <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+                </div>
+            </div>
+            
+            <!-- Navigation buttons -->
+            <button @click="prev(); $event.stopPropagation()" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition z-20">
+                <i class="fas fa-chevron-left text-xl"></i>
+            </button>
+            <button @click="next(); $event.stopPropagation()" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition z-20">
+                <i class="fas fa-chevron-right text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-school text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-poppins font-bold text-lg">SDIT Al-Hikmah</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Membangun generasi Qurani yang berakhlak mulia, berilmu luas, dan siap menghadapi tantangan masa depan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="profil.html" class="footer-link text-gray-400 hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="program.html" class="footer-link text-gray-400 hover:text-white transition">Program</a></li>
+                        <li><a href="fasilitas.html" class="footer-link text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="tenaga-pendidik.html" class="footer-link text-gray-400 hover:text-white transition">Tenaga Pendidik</a></li>
+                        <li><a href="galeri.html" class="footer-link text-gray-400 hover:text-white transition">Galeri</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-400 text-sm">(021) 1234-5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-primary"></i>
+                            <span class="text-gray-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-400 text-sm">info@sdit-alhikmah.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Senin - Jumat</span>
+                            <span>07:00 - 15:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sabtu</span>
+                            <span>07:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minggu</span>
+                            <span>Libur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400 text-sm text-center">
+                    &copy; 2026 SDIT Al-Hikmah. Design by <a href="https://www.bitnesia.com" target="_blank" class="text-secondary hover:text-white transition">Bitnesia</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button x-data="scrollTop()" x-show="isVisible" @click="scroll()" x-transition class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-emerald-700 transition z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

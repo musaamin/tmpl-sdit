@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - SDIT Al-Hikmah</title>
+    <meta name="description" content="Profil SDIT Al-Hikmah - Sejarah, Visi Misi, dan Struktur Organisasi">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        secondary: '#F59E0B',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-gray-700 bg-gray-50">
+
+    <!-- Navigation -->
+    <header x-data="{ sticky: stickyHeader(), mobile: mobileMenu() }" :class="{ 'sticky-header': sticky.isSticky }" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-school text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-poppins font-bold text-xl text-dark">SDIT Al-Hikmah</h1>
+                        <p class="text-xs text-gray-500">Islamic School</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium transition">Beranda</a>
+                    <a href="profil.html" class="nav-active text-primary font-semibold transition">Profil</a>
+                    <a href="program.html" class="text-gray-700 hover:text-primary font-medium transition">Program</a>
+                    <a href="fasilitas.html" class="text-gray-700 hover:text-primary font-medium transition">Fasilitas</a>
+                    <a href="tenaga-pendidik.html" class="text-gray-700 hover:text-primary font-medium transition">Guru</a>
+                    <a href="galeri.html" class="text-gray-700 hover:text-primary font-medium transition">Galeri</a>
+                    <a href="berita.html" class="text-gray-700 hover:text-primary font-medium transition">Berita</a>
+                    <a href="kontak.html" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-emerald-700 transition btn-shine">Kontak</a>
+                </nav>
+
+                <button @click="mobile.toggle()" class="lg:hidden text-gray-700 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl" x-show="!mobile.isOpen"></i>
+                    <i class="fas fa-times text-2xl" x-show="mobile.isOpen"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobile.isOpen" @click.away="mobile.close()" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden bg-white border-t shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="profil.html" class="block py-2 text-primary font-semibold">Profil</a>
+                <a href="program.html" class="block py-2 text-gray-700 hover:text-primary">Program</a>
+                <a href="fasilitas.html" class="block py-2 text-gray-700 hover:text-primary">Fasilitas</a>
+                <a href="tenaga-pendidik.html" class="block py-2 text-gray-700 hover:text-primary">Guru</a>
+                <a href="galeri.html" class="block py-2 text-gray-700 hover:text-primary">Galeri</a>
+                <a href="berita.html" class="block py-2 text-gray-700 hover:text-primary">Berita</a>
+                <a href="kontak.html" class="block py-2 text-primary font-semibold">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary to-emerald-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="font-poppins text-4xl md:text-5xl font-bold mb-4">Profil Sekolah</h1>
+            <p class="text-lg text-white/90">Mengenal lebih dekat SDIT Al-Hikmah</p>
+        </div>
+    </section>
+
+    <!-- Sejarah Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll">
+                    <img src="assets/images/profil/sejarah.jpg" alt="Sejarah SDIT" class="rounded-2xl shadow-xl w-full">
+                </div>
+                <div class="animate-on-scroll">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Sejarah Kami</span>
+                    <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2 mb-6">Perjalanan SDIT Al-Hikmah</h2>
+                    <div class="space-y-4 text-gray-600">
+                        <p class="leading-relaxed">
+                            SDIT Al-Hikmah didirikan pada tahun 2011 dengan visi untuk menyediakan pendidikan berkualitas yang mengintegrasikan nilai-nilai Islam dengan kurikulum nasional. Bermula dari sebuah yayasan pendidikan Islam, sekolah ini berkembang pesat berkat dukungan masyarakat.
+                        </p>
+                        <p class="leading-relaxed">
+                            Dalam perjalanannya, SDIT Al-Hikmah telah meluluskan ribuan siswa yang kini tersebar di berbagai jenjang pendidikan menengah dan perguruan tinggi ternama, baik di dalam maupun luar negeri.
+                        </p>
+                        <p class="leading-relaxed">
+                            Hingga kini, SDIT Al-Hikmah terus berinovasi dalam metode pembelajaran dan pengembangan fasilitas untuk memberikan pendidikan terbaik bagi generasi penerus bangsa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi Misi Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Visi & Misi</span>
+                <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2">Arah dan Tujuan Pendidikan</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Visi -->
+                <div class="bg-primary text-white rounded-2xl p-10 animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-3xl"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-2xl">Visi</h3>
+                    </div>
+                    <p class="text-lg leading-relaxed">
+                        "Menjadikan SDIT Al-Hikmah sebagai lembaga pendidikan Islam terdepan yang menghasilkan generasi Qurani, berakhlak mulia, cerdas, terampil, dan berwawasan global."
+                    </p>
+                </div>
+
+                <!-- Misi -->
+                <div class="bg-white rounded-2xl p-10 shadow-lg animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-primary text-3xl"></i>
+                        </div>
+                        <h3 class="font-poppins font-bold text-2xl text-dark">Misi</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Menyelenggarakan pendidikan berbasis Al-Quran dan Sunnah sesuai pemahaman salafusshalih</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Mengintegrasikan kurikulum nasional dengan pendidikan Islam secara komprehensif</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Menumbuhkembangkan karakter Islami melalui pembiasaan ibadah dan adab</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Mengoptimalkan potensi akademik dan non-akademik setiap siswa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Membangun kerjasama aktif dengan orang tua dan masyarakat</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>Mengembangkan tenaga pendidik yang profesional dan berkompeten</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struktur Organisasi -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Struktur Organisasi</span>
+                <h2 class="font-poppins text-3xl md:text-4xl font-bold text-dark mt-2">Tim Manajemen SDIT Al-Hikmah</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Ketua Yayasan -->
+                <div class="text-center mb-12 animate-on-scroll">
+                    <div class="inline-block bg-secondary/10 rounded-2xl p-8">
+                        <img src="assets/images/profil/kepala-sekolah.jpg" alt="Ketua Yayasan" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-secondary">
+                        <h3 class="font-poppins font-bold text-xl text-dark">Dr. H. Abdullah Al-Habsyi</h3>
+                        <p class="text-secondary font-semibold">Ketua Yayasan</p>
+                    </div>
+                </div>
+
+                <!-- Kepala Sekolah -->
+                <div class="text-center mb-12 animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="inline-block bg-primary/10 rounded-2xl p-8">
+                        <img src="assets/images/profil/kepala-sekolah.jpg" alt="Kepala Sekolah" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-primary">
+                        <h3 class="font-poppins font-bold text-xl text-dark">Ustadz Ahmad Fauzi, M.Pd</h3>
+                        <p class="text-primary font-semibold">Kepala Sekolah</p>
+                    </div>
+                </div>
+
+                <!-- Waka & Staff -->
+                <div class="grid md:grid-cols-3 gap-6 animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <img src="assets/images/guru/guru-02.jpg" alt="Wakasek Kurikulum" class="w-24 h-24 rounded-full object-cover mx-auto mb-3">
+                        <h4 class="font-poppins font-semibold text-dark">Ustadzah Siti Aminah</h4>
+                        <p class="text-sm text-gray-500">Wakasek Kurikulum</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <img src="assets/images/guru/guru-03.jpg" alt="Wakasek Kesiswaan" class="w-24 h-24 rounded-full object-cover mx-auto mb-3">
+                        <h4 class="font-poppins font-semibold text-dark">Ustadz Muhammad Ridwan</h4>
+                        <p class="text-sm text-gray-500">Wakasek Kesiswaan</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 text-center card-hover">
+                        <img src="assets/images/guru/guru-04.jpg" alt="Wakasek Sarpras" class="w-24 h-24 rounded-full object-cover mx-auto mb-3">
+                        <h4 class="font-poppins font-semibold text-dark">Ustadz Ali Hasan</h4>
+                        <p class="text-sm text-gray-500">Wakasek Sarpras</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-school text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-poppins font-bold text-lg">SDIT Al-Hikmah</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Membangun generasi Qurani yang berakhlak mulia, berilmu luas, dan siap menghadapi tantangan masa depan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link text-gray-400 hover:text-white transition">Beranda</a></li>
+                        <li><a href="profil.html" class="footer-link text-gray-400 hover:text-white transition">Profil Sekolah</a></li>
+                        <li><a href="program.html" class="footer-link text-gray-400 hover:text-white transition">Program</a></li>
+                        <li><a href="fasilitas.html" class="footer-link text-gray-400 hover:text-white transition">Fasilitas</a></li>
+                        <li><a href="tenaga-pendidik.html" class="footer-link text-gray-400 hover:text-white transition">Tenaga Pendidik</a></li>
+                        <li><a href="galeri.html" class="footer-link text-gray-400 hover:text-white transition">Galeri</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">Jl. Pendidikan No. 123, Kelurahan Mawar, Kecamatan Bahagia, Kota Islami</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary"></i>
+                            <span class="text-gray-400 text-sm">(021) 1234-5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fab fa-whatsapp text-primary"></i>
+                            <span class="text-gray-400 text-sm">+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-gray-400 text-sm">info@sdit-alhikmah.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-poppins font-semibold text-lg mb-4">Jam Operasional</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Senin - Jumat</span>
+                            <span>07:00 - 15:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sabtu</span>
+                            <span>07:00 - 12:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Minggu</span>
+                            <span>Libur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm text-center md:text-left">
+                        &copy; 2026 SDIT Al-Hikmah. Design by <a href="https://www.bitnesia.com" target="_blank" class="text-secondary hover:text-white transition">Bitnesia</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button x-data="scrollTop()" x-show="isVisible" @click="scroll()" x-transition class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-emerald-700 transition z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
