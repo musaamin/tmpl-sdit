@@ -1,6 +1,6 @@
-# SDIT Al-Hikmah - Website Profil Sekolah
+# Template Website Profil Sekolah
 
-Website profil Sekolah Dasar Islam Terpadu Al-Hikmah. Website ini dibangun dengan teknologi modern dan responsif untuk menampilkan informasi lengkap tentang sekolah.
+Template website profil Sekolah Dasar Islam Terpadu, dibangun dengan teknologi modern dan responsif untuk menampilkan informasi lengkap tentang sekolah.
 
 ## Fitur Utama
 
